@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Trivia</title>
+</head>
+
+<body>
+    <button type='submit'>Click here</button>
+    <div id="questions"></div>
+        
+    
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            var questions = document.getElementById('questions');
+
+            $("button").click(function () {
+                $.get("https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple", displayName);
+                function displayName(response) {
+                    for(var i = 0; i < response.results.length; i++){
+                        var h2 = document.createElement('h2');
+                        h2.innerHTML = response.results[i].question
+                        questions.appendChild(h2);
+                        var ul = document.createElement('ul');
+                        for(var j = 0; j < response.results[i].incorrect_answers.length; j++){
+                            var li = document.createElement('li');
+                            li.innerHTML = response.results[i].incorrect_answers[j];
+                            ul.appendChild(li);
+                        }
+                        questions.appendChild(ul);
+                    }
+                }
+            });
+
+            function shuffleAnswers(){
+                index = Math.floor(Math.random()*3)
+                arr[index] = response.results[i].correct_answer
+
+            }
+
+        });
+
+
+    </script>
+</body>
+
+</html>
